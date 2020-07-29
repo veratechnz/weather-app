@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/custom.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/weather-icons.min.css">
+	<title>Weather Forecasting</title>
+</head>
+<body>
+
+	<!-- Parent Div Begins -->
+	<!-- The parent app div has a conditional on it that monitors the weather  -->
+	<!-- data property for a true or false value. This will define if the component/html will render -->
+	<div class="parent" id="app" v-if="weather">
+
+		<!-- Weather UI HTML -->
+		<!-- This element has a class switch function will change and adjust a class from vue -->
+		<div class="weather-widget" v-on:click="isDark = true" v-bind:class="{active: isActive, 'dark-theme': isDark}">
+		  <div class="weather-icon row">
+				<!-- This element has a on click vue bind. Binds can also bind values to attributes -->
+		    <i class="icon1" id="icon1" v-on:click="doAnAlert()" v-bind:title="newTitle"></i>
+		  </div>
+		  <h1 class="temp-c row">{{weather.data.daily[0].temp.day.toFixed(0)}}</h1>
+		  <h5 class="condition row">{{weather.data.daily[0].weather[0].description}}</h5>
+		  <img  v-bind:src="iconsRef[0]" alt="" class="main">
+		  <h3 class="location-name row">Wellington</h3>
+		  <h5 class="location-country row">New Zealand</h5>
+			<h5 style="text-align: center;">{{getDayOfTheWeek(1)}}</h5>
+		</div>
+		<div class="weather-forecast">
+
+		  <div class="forecast-item">
+		    <div class="day">
+		      <h4>{{getDayOfTheWeek(2)}}</h4>
+		      <h6>{{dates[1]}}</h6>
+		    </div>
+		    <div class="forecast">
+					{{weather.data.daily[1].temp.day.toFixed(0)}}
+		      <h6>{{weather.data.daily[1].weather[0].description.toUpperCase()}}</h6>
+		      <img  v-bind:src="iconsRef[1]" alt="">
+		    </div>
+		  </div>
+
+		  <div class="forecast-item">
+		    <div class="day">
+		      <h4>{{getDayOfTheWeek(3)}}</h4>
+            <h6>{{dates[2]}}</h6>
+          </div>
+          <div class="forecast">
+      			{{weather.data.daily[2].temp.day.toFixed(0)}}
+            <h6>{{weather.data.daily[2].weather[0].description.toUpperCase()}}</h6>
+            <img  v-bind:src="iconsRef[2]" alt="">
+          </div>
+		  </div>
+
+		  <div class="forecast-item">
+		    <div class="day">
+		      <h4>{{getDayOfTheWeek(4)}}</h4>
+          <h6>{{dates[3]}}</h6>
+        </div>
+        <div class="forecast">
+    			{{weather.data.daily[3].temp.day.toFixed(0)}}
+          <h6>{{weather.data.daily[3].weather[0].description.toUpperCase()}}</h6>
+          <img  v-bind:src="iconsRef[3]" alt="">
+        </div>
+		  </div>
+
+		  <div class="forecast-item">
+		    <div class="day">
+		      <h4>{{getDayOfTheWeek(5)}}</h4>
+          <h6>{{dates[4]}}</h6>
+        </div>
+        <div class="forecast">
+    			{{weather.data.daily[4].temp.day.toFixed(0)}}
+          <h6>{{weather.data.daily[4].weather[0].description.toUpperCase()}}</h6>
+          <img  v-bind:src="iconsRef[4]" alt="">
+        </div>
+		  </div>
+
+		  <div class="forecast-item">
+		    <div class="day">
+		      <h4>{{getDayOfTheWeek(6)}}</h4>
+            <h6>{{dates[5]}}</h6>
+          </div>
+          <div class="forecast">
+      			{{weather.data.daily[5].temp.day.toFixed(0)}}
+            <h6>{{weather.data.daily[5].weather[0].description.toUpperCase()}}</h6>
+            <img  v-bind:src="iconsRef[5]" alt="">
+          </div>
+		  </div>
+
+	  	<div class="forecast-item">
+	      <div class="day">
+	  			<!-- After the last day of the week '5' will return Saturday we can use '-1' -->
+	  			<!-- to loop back to the start of the index array -->
+	        <h4>{{getDayOfTheWeek(7)}}</h4>
+            <h6>{{dates[6]}}</h6>
+          </div>
+          <div class="forecast">
+      			{{weather.data.daily[6].temp.day.toFixed(0)}}
+            <h6>{{weather.data.daily[6].weather[0].description.toUpperCase()}}</h6>
+            <img  v-bind:src="iconsRef[6]" alt="">
+          </div>
+	    </div>
+
+	    	<div class="forecast-item">
+	        <div class="day">
+	    			<!-- After the last day of the week '5' will return Saturday we can use '-1' -->
+	    			<!-- to loop back to the start of the index array -->
+	          <h4>{{getDayOfTheWeek(8)}}</h4>
+	          <h6>{{dates[7]}}</h6>
+	        </div>
+	        <div class="forecast">
+	           {{weather.data.daily[7].temp.day.toFixed(0)}}
+	          <h6>{{weather.data.daily[6].weather[0].description.toUpperCase()}}</h6>
+	          <img  v-bind:src="iconsRef[7]" alt="">
+	        </div>
+	      </div>
+
+		</div>
+	<!-- WeatherUI HTML ENDS -->
+  </div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="js/custom.js"></script> 
+</body>
+</html>
